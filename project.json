@@ -1,0 +1,73 @@
+{
+  "name": "elements-react-test",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/elements-react-test"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "elements-react-test:build",
+        "port": 3000
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "elements-react-test:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "elements-react-test:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "elements-react-test:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "elements-react-test:build:development"
+        },
+        "production": {
+          "buildTarget": "elements-react-test:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/elements-react-test"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "coverage/elements-react-test"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["./src/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}
