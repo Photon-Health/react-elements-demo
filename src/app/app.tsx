@@ -1,35 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useEffect, useMemo } from 'react';
-import {
-  Routes,
-  Route,
-  BrowserRouter,
-  Link,
-  useLocation,
-  Navigate,
-} from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Home from './Home';
 import Visits from './Visits';
-
-function useQueryParams() {
-  const { search } = useLocation();
-  return useMemo(() => new URLSearchParams(search), [search]);
-}
-
-function Home() {
-  const query = useQueryParams();
-
-  if (query.get('redirect')) {
-    // http://localhost:3000/?redirect=%2Fvisits
-    return <Navigate to={query.get('redirect') || '/'} />;
-  }
-
-  return (
-    <div>
-      Home
-      <Link to="/visits">Visits</Link>
-    </div>
-  );
-}
 
 export function App() {
   return (
