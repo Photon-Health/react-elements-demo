@@ -10,7 +10,6 @@ function Home() {
   const query = useQueryParams();
 
   if (query.get('redirect')) {
-    // http://localhost:3000/?redirect=%2Fvisits
     return <Navigate to={query.get('redirect') || '/'} />;
   }
 
