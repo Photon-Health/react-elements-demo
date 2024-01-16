@@ -1,15 +1,18 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Home from './Home';
-import Visits from './Visits';
+// @ts-nocheck
+
+import('@photonhealth/elements');
 
 export function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/visits" element={<Visits />} />
-      </Routes>
-    </BrowserRouter>
+    <photon-client
+      id={import.meta.env.VITE_CLIENT_ID}
+      org={import.meta.env.VITE_ORG_ID}
+      dev-mode="true"
+      auto-login="true"
+      redirect-uri="http://localhost:3000"
+    >
+      <photon-prescribe-workflow />
+    </photon-client>
   );
 }
 
