@@ -44,7 +44,7 @@
     "vitest": "^0.25.8"
   },
   "dependencies": {
-    "@photonhealth/elements": "^0.0.98",
+    "@photonhealth/elements": "^0.8.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.9.0"
