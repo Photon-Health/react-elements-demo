@@ -9,10 +9,6 @@ function useQueryParams() {
 function Home() {
   const query = useQueryParams();
 
-  if (query.get('redirect')) {
-    return <Navigate to={query.get('redirect') || '/'} />;
-  }
-
   return (
     <div>
       Home
