@@ -9,7 +9,7 @@ export function App() {
       org={import.meta.env.VITE_ORG_ID}
       dev-mode="true"
       auto-login="true"
-      redirect-uri="http://localhost:3000"
+      redirect-uri={`${window.location.protocol}//${window.location.host}`}
     >
       <photon-prescribe-workflow />
     </photon-client>
