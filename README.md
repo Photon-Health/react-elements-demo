@@ -17,6 +17,8 @@ Then, install:
 npm i
 ```
 
+Copy the `.template.env` file into `.env` and set your app's clientId and orgId.
+
 Run the application
 
 ```
