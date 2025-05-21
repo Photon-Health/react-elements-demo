@@ -17,8 +17,18 @@ Then, install:
 npm i
 ```
 
+Copy the `.template.env` file into `.env` and set your app's clientId and orgId.
+
 Run the application
 
 ```
 npm run start
 ```
+
+## Batch and Iterative Flows
+
+When running the app, you will see tabs for "Batch" and "Iterative" style flows for adding prescriptions into the `<photon-prescribe-workflow>` Element.
+
+For this to work, update the templateIDs in `src/data/templateOverridesData.ts` with templates setup in your Neutron (i.e. staging environment) Organization.
+
+You will also need to set the `VITE_PATIENT_ID` with a Patient ID for the Neutron environment.

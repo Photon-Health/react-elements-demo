@@ -40,3 +40,4 @@ storybook-static/
 build-storybook.log
 
 .nx/
+.env
