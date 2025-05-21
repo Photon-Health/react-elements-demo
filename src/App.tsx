@@ -1,9 +1,10 @@
-// @ts-nocheck
-
-import('@photonhealth/elements');
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import IterativeFlow from './pages/IterativeFlow';
+import BatchFlow from './pages/BatchFlow';
 
 export function App() {
   return (
+    // @ts-expect-error
     <photon-client
       id={import.meta.env.VITE_CLIENT_ID}
       org={import.meta.env.VITE_ORG_ID}
@@ -11,7 +12,33 @@ export function App() {
       auto-login="true"
       redirect-uri={`${window.location.protocol}//${window.location.host}`}
     >
-      <photon-prescribe-workflow />
+      <BrowserRouter>
+        <div className="tabs-container">
+          <nav className="tabs">
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? 'active-tab' : 'tab')}
+            >
+              Batch Flow
+            </NavLink>
+            <NavLink
+              to="/iterative"
+              className={({ isActive }) => (isActive ? 'active-tab' : 'tab')}
+              end
+            >
+              Iterative Flow
+            </NavLink>
+          </nav>
+
+          <div className="tab-content">
+            <Routes>
+              <Route path="/iterative" element={<IterativeFlow />} />
+              <Route path="/" element={<BatchFlow />} />
+            </Routes>
+          </div>
+        </div>
+      </BrowserRouter>
+      {/*@ts-expect-error*/}
     </photon-client>
   );
 }
