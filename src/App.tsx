@@ -1,7 +1,8 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import IterativeFlow from './pages/IterativeFlow';
 import BatchFlow from './pages/BatchFlow';
-import './AppStyles.css'; // Add this import
+import './AppStyles.css';
+import SimplestFlow from './pages/SimplestFlow';
 
 export function App() {
   return (
@@ -20,6 +21,12 @@ export function App() {
               to="/"
               className={({ isActive }) => (isActive ? 'active-tab' : 'tab')}
             >
+              Simplest Setup
+            </NavLink>
+            <NavLink
+              to="/batch"
+              className={({ isActive }) => (isActive ? 'active-tab' : 'tab')}
+            >
               Batch Flow
             </NavLink>
             <NavLink
@@ -33,8 +40,9 @@ export function App() {
 
           <div className="tab-content">
             <Routes>
+              <Route path="/" element={<SimplestFlow />} />
               <Route path="/iterative" element={<IterativeFlow />} />
-              <Route path="/" element={<BatchFlow />} />
+              <Route path="/batch" element={<BatchFlow />} />
             </Routes>
           </div>
         </div>
