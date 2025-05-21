@@ -1,6 +1,7 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import IterativeFlow from './pages/IterativeFlow';
 import BatchFlow from './pages/BatchFlow';
+import './AppStyles.css'; // Add this import
 
 export function App() {
   return (
