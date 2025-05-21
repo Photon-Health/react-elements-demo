@@ -39,13 +39,14 @@ const templateOverridesData: {
   tmp_01J8R47XMT041WG03REBC0FYYK: {
     instructions: 'Override instructions 2',
   },
+  tmp_invalid: {},
 };
 
-export type OverrideOption = {
+export type TemplateOverrideOption = {
   id: string;
   name: string;
 };
-export const templateOverridesList: OverrideOption[] = [
+export const templateOverridesList: TemplateOverrideOption[] = [
   {
     id: 'tmp_01J6DBEHZX11BPMY38G9PWASMH',
     name: 'Amoxicillin',
@@ -54,6 +55,10 @@ export const templateOverridesList: OverrideOption[] = [
     id: 'tmp_01J8R47XMT041WG03REBC0FYYK',
     name: 'Cat Hair Extract',
   },
+  {
+    id: 'tmp_invalid',
+    name: 'Invalid Template',
+  }
 ];
 
 export default templateOverridesData;

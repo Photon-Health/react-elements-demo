@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import templateOverridesData, {
-  OverrideOption,
+  TemplateOverrideOption,
   templateOverridesList,
   TemplateOverridesProp,
 } from '../data/templateOverridesData';
@@ -10,7 +10,7 @@ import('@photonhealth/elements');
 export function BatchFlow() {
   const [batchTemplateOverrides, setBatchTemplateOverrides] =
     useState<TemplateOverridesProp>({});
-  const [selectedOverride, setSelectedOverride] = useState<OverrideOption>(
+  const [selectedOverride, setSelectedOverride] = useState<TemplateOverrideOption>(
     templateOverridesList[0]
   );
   const [didLoadBatch, setDidLoadBatch] = useState<boolean>();
@@ -42,12 +42,9 @@ export function BatchFlow() {
         <h3>Batch Wrapper App Controls</h3>
         <div>
           <select value={selectedOverride.id} onChange={handleSelectChange}>
-            <option value={templateOverridesList[0].id}>
-              {templateOverridesList[0].name}
-            </option>
-            <option value={templateOverridesList[1].id}>
-              {templateOverridesList[1].name}
-            </option>
+            {templateOverridesList.map((option) => (
+              <option value={option.id}>{option.name}</option>
+            ))}
           </select>
           <button onClick={addToBatch}>Add to Batch</button>
         </div>

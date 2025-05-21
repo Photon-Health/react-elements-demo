@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import templateOverridesData, {
+  TemplateOverrideOption,
   templateOverridesList,
   TemplateOverridesProp,
 } from '../data/templateOverridesData';
@@ -10,17 +11,9 @@ export function IterativeFlow() {
   const [currentTemplateOverrides, setCurrentTemplateOverrides] =
     useState<TemplateOverridesProp>({});
 
-  const addTemplate1 = () => {
+  const addTemplate = (option: TemplateOverrideOption) => {
     const newOverrides = { ...currentTemplateOverrides };
-    newOverrides[templateOverridesList[0].id] =
-      templateOverridesData[templateOverridesList[0].id];
-    setCurrentTemplateOverrides(newOverrides);
-  };
-
-  const addTemplate2 = () => {
-    const newOverrides = { ...currentTemplateOverrides };
-    newOverrides[templateOverridesList[1].id] =
-      templateOverridesData[templateOverridesList[1].id];
+    newOverrides[option.id] = templateOverridesData[option.id];
     setCurrentTemplateOverrides(newOverrides);
   };
 
@@ -30,16 +23,13 @@ export function IterativeFlow() {
     <>
       <div>
         <h3>Iterative Wrapper App Controls</h3>
-        <div>
-          <button onClick={addTemplate1}>
-            Add Template 1: {templateOverridesList[0].name}
-          </button>
-        </div>
-        <div>
-          <button onClick={addTemplate2}>
-            Add Template 2: {templateOverridesList[1].name}
-          </button>
-        </div>
+        {templateOverridesList.map((option) => (
+          <div>
+            <button onClick={() => addTemplate(option)}>
+              Add "{option.name}" Template
+            </button>
+          </div>
+        ))}
       </div>
       <div>
         <h3>Photon Element</h3>
