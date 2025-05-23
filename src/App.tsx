@@ -6,15 +6,19 @@ import SimplestFlow from './pages/SimplestFlow';
 import SetPharmacy from './pages/SetPharmacy';
 
 export function App() {
+  const env = import.meta.env.VITE_PHOTON_ENV;
+  if (!env) {
+    throw new Error('Missing VITE_PHOTON_ENV in .env file');
+  }
   return (
     // @ts-expect-error
     <photon-client
       id={import.meta.env.VITE_CLIENT_ID}
       org={import.meta.env.VITE_ORG_ID}
-      env="neutron"
-      domain="auth.neutron.health"
-      audience="https://api.neutron.health"
-      uri="https://api.neutron.health/graphql"
+      env={env}
+      domain={`auth.${env}.health`}
+      audience={`https://api.${env}.health`}
+      uri={`https://api.${env}.health/graphql`}
       auto-login="true"
       redirect-uri={`${window.location.protocol}//${window.location.host}`}
     >
