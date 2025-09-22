@@ -27,8 +27,13 @@ npm run start
 
 ## Batch and Iterative Flows
 
-When running the app, you will see tabs for "Batch" and "Iterative" style flows for adding prescriptions into the `<photon-prescribe-workflow>` Element.
+When running the app on `main` branch, you will see tabs for "Batch" and "Iterative" style flows for integrating the `<photon-prescribe-workflow>` Element into an app.
 
-For this to work, update the templateIDs in `src/data/templateOverridesData.ts` with templates setup in your Neutron (i.e. staging environment) Organization.
+A "Batch"-style flow implies the patientID and prescriptionIDs/templateIDs are passed in when the Element is first rendered.
 
-You will also need to set the `VITE_PATIENT_ID` with a Patient ID for the Neutron environment.
+An "Iterative"-style flow implies the patientID and/or prescriptionIDs/templateIDs are either not passed in on the first render, or are updated by your application after the first render.
+
+For these flows to work, update the templateIDs in `src/data/templateOverridesData.ts` with templates setup in your Neutron (i.e. staging environment) Organization.
+Templates can be created in Photon's web application.
+
+You will also need to set the `VITE_PATIENT_ID` with a Patient ID for your organization in the Neutron environment.
