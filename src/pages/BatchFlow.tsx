@@ -43,7 +43,7 @@ export function BatchFlow() {
         <div>
           <select value={selectedOverride.id} onChange={handleSelectChange}>
             {templateOverridesList.map((option) => (
-              <option value={option.id}>{option.name}</option>
+              <option value={option.id} key={option.id}>{option.name}</option>
             ))}
           </select>
           <button onClick={addToBatch}>Add to Batch</button>
