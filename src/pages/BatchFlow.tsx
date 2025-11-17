@@ -10,9 +10,8 @@ import('@photonhealth/elements');
 export function BatchFlow() {
   const [batchTemplateOverrides, setBatchTemplateOverrides] =
     useState<TemplateOverridesProp>({});
-  const [selectedOverride, setSelectedOverride] = useState<TemplateOverrideOption>(
-    templateOverridesList[0]
-  );
+  const [selectedOverride, setSelectedOverride] =
+    useState<TemplateOverrideOption>(templateOverridesList[0]);
   const [didLoadBatch, setDidLoadBatch] = useState<boolean>();
 
   function loadBatch() {
@@ -22,7 +21,8 @@ export function BatchFlow() {
 
   const addToBatch = () => {
     const newOverrides = { ...batchTemplateOverrides };
-    newOverrides[selectedOverride.id] = templateOverridesData[selectedOverride.id];
+    newOverrides[selectedOverride.id] =
+      templateOverridesData[selectedOverride.id];
     setBatchTemplateOverrides(newOverrides);
   };
 
@@ -36,6 +36,7 @@ export function BatchFlow() {
 
   const batchTemplateIds = Object.keys(batchTemplateOverrides);
 
+  const env = import.meta.env.VITE_PHOTON_ENV;
   return (
     <>
       <div>
@@ -43,7 +44,9 @@ export function BatchFlow() {
         <div>
           <select value={selectedOverride.id} onChange={handleSelectChange}>
             {templateOverridesList.map((option) => (
-              <option value={option.id} key={option.id}>{option.name}</option>
+              <option value={option.id} key={option.id}>
+                {option.name}
+              </option>
             ))}
           </select>
           <button onClick={addToBatch}>Add to Batch</button>
@@ -68,11 +71,24 @@ export function BatchFlow() {
         <div>
           <h3>Photon Element</h3>
           {/*@ts-expect-error*/}
-          <photon-prescribe-workflow
-            patient-id={import.meta.env.VITE_PATIENT_ID}
-            template-ids={batchTemplateIds}
-            template-overrides={JSON.stringify(batchTemplateOverrides)}
-          />
+          <photon-client
+            id={import.meta.env.VITE_CLIENT_ID}
+            org={import.meta.env.VITE_ORG_ID}
+            env={env}
+            domain={`auth.${env}.health`}
+            audience={`https://api.${env}.health`}
+            uri={`https://api.${env}.health/graphql`}
+            auto-login="true"
+            redirect-uri={`${window.location.protocol}//${window.location.host}`}
+          >
+            {/*@ts-expect-error*/}
+            <photon-prescribe-workflow
+              patient-id={import.meta.env.VITE_PATIENT_ID}
+              template-ids={batchTemplateIds}
+              template-overrides={JSON.stringify(batchTemplateOverrides)}
+            />
+            {/*@ts-expect-error*/}
+          </photon-client>
         </div>
       )}
     </>
